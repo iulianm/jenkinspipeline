@@ -1,35 +1,26 @@
 pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps {
-                bat 'mvn clean package'
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+
+    parameters {
+        string(name: 'tomcat_dev', defaultValue: '3.120.235.62', description: 'Staging Server')
+        string(name: 'tomcat_prod', defaultValue: '52.28.177.30', description: 'Production Server')
+    }
+
+    triggers {
+        pollSCM('* * * * *')
+    }
+
+    stage ('Deployments'){
+        parallel{
+            stage ('Deploy to Staging'){
+                steps {
+                    sh "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                 }
             }
-        }
-        stage ('Deploy to Staging'){
-            steps {
-                build job: 'deploy-to-staging'
-            }
-        }
-        stage ('Deploy to Production'){
-            steps{
-                timeout(time:5, unit:'DAYS'){
-                    input message: 'Approve PRODUCTION Deployment?'
-                }
-                build job: 'deploy-to-prod'
-            }
-            post {
-                success {
-                    echo 'Code deployed to Production.'
-                }
-                failure {
-                    echo 'Deployment failed.'
+
+            stage ("Deploy to Production"){
+                steps {
+                    sh "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                 }
             }
         }
