@@ -11,17 +11,29 @@ pipeline {
     }
 
     stages{
+        stage('Build'){
+                steps {
+                    bat 'mvn clean package'
+                }
+                post {
+                    success {
+                        echo 'Now Archiving...'
+                        archiveArtifacts artifacts: '**/target/*.war'
+                    }
+                }
+        }
+
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "winscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "winscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
             }
