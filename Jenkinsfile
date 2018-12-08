@@ -15,13 +15,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "scp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
             }
