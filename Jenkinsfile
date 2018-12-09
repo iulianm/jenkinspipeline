@@ -27,13 +27,13 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "pscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.ppk **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "pscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo2.ppk target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.ppk **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
+                        bat "pscp -i C:/Users/Bili/Desktop/Fullstack/CICD/tomcat-demo.ppk target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-9.0.13/webapps"
                     }
                 }
             }
