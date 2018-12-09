@@ -33,7 +33,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSP" value="1" />
-          <entry key="PLAIN_TEXT" value="860" />
+          <entry key="PLAIN_TEXT" value="874" />
         </counts>
       </usages-collector>
     </session>
@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Jenkinsfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="35" column="90" selection-start-line="35" selection-start-column="90" selection-end-line="35" selection-end-column="90" />
+            <state relative-caret-position="960">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -272,12 +272,12 @@
       <option name="presentableId" value="Default" />
       <updated>1544288428194</updated>
       <workItem from="1544288444104" duration="296000" />
-      <workItem from="1544289012731" duration="13930000" />
+      <workItem from="1544289012731" duration="14326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14226000" />
+    <option name="totallyTimeSpent" value="14622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1719" y="0" width="1726" height="1412" extended-state="0" />
@@ -338,8 +338,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Jenkinsfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="35" column="90" selection-start-line="35" selection-start-column="90" selection-end-line="35" selection-end-column="90" />
+        <state relative-caret-position="960">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
         </state>
       </provider>
     </entry>
